@@ -20,6 +20,7 @@ dependencies:
   geolocator: ^6.1.7
   google_maps_flutter: ^1.0.6
   google_sign_in: ^4.5.6
+  lottie: ^0.7.0+1
   page_transition: ^1.1.7+2
   provider: ^4.3.2+2
 
@@ -28,4 +29,7 @@ dev_dependencies:
     sdk: flutter
 
 flutter:
+
+  assets:
+    - animations/slice.json
   uses-material-design: true
