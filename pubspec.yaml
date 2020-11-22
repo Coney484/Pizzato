@@ -32,4 +32,5 @@ flutter:
 
   assets:
     - animations/slice.json
+    - animations/delivery.json
   uses-material-design: true
