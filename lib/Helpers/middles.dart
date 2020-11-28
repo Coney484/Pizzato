@@ -3,7 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:pizzato/Services/manageData.dart';
+import 'package:pizzato/Views/detail_screen.dart';
 import 'package:provider/provider.dart';
 
 class MiddleHelpers extends ChangeNotifier {
@@ -58,7 +60,13 @@ class MiddleHelpers extends ChangeNotifier {
                 itemCount: snapshot.data.length,
                 itemBuilder: (BuildContext context, int index) {
                   return GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushReplacement(
+                          context,
+                          PageTransition(
+                              child: DetailsScreen(queryDocumentSnapshot:  snapshot.data[index],),
+                              type: PageTransitionType.topToBottom));
+                    },
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Padding(
@@ -177,6 +185,140 @@ class MiddleHelpers extends ChangeNotifier {
                   );
                 });
           }),
+    );
+  }
+
+  Widget textBusiness() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 20.0),
+      child: RichText(
+        text: TextSpan(
+            text: 'Business ',
+            style: TextStyle(
+                shadows: [
+                  BoxShadow(
+                    color: Colors.black,
+                    blurRadius: 1,
+                  )
+                ],
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+                fontSize: 46.0),
+            children: <TextSpan>[
+              TextSpan(
+                  text: 'Lunch',
+                  style: TextStyle(
+                      shadows: [
+                        BoxShadow(
+                          color: Colors.grey,
+                          blurRadius: 0,
+                        )
+                      ],
+                      fontSize: 29.0,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.grey))
+            ]),
+      ),
+    );
+  }
+
+  Widget dataBusiness(BuildContext context, String collection) {
+    return Container(
+      height: 500.0,
+      child: FutureBuilder(
+        future: Provider.of<ManageData>(context, listen: false)
+            .fetchData(collection),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(
+              child: Lottie.asset("animations/delivery.json"),
+            );
+          } else {
+            return ListView.builder(
+              itemCount: snapshot.data.length,
+              itemBuilder: (BuildContext context, index) {
+                return GestureDetector(
+                  onTap: () {},
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(40.0)),
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.shade500,
+                              blurRadius: 5,
+                              spreadRadius: 3,
+                            )
+                          ]),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  snapshot.data[index].data()['name'],
+                                  style: TextStyle(
+                                      fontSize: 25.0,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black),
+                                ),
+                                Text(
+                                  snapshot.data[index].data()['category'],
+                                  style: TextStyle(
+                                      fontSize: 22.0,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.cyan),
+                                ),
+                                Text(
+                                  snapshot.data[index]
+                                      .data()['notPrice']
+                                      .toString(),
+                                  style: TextStyle(
+                                      decoration: TextDecoration.lineThrough,
+                                      fontSize: 18.0,
+                                      fontWeight: FontWeight.w300,
+                                      color: Colors.cyan),
+                                ),
+                                Row(
+                                  children: [
+                                    Icon(FontAwesomeIcons.rupeeSign,
+                                        size: 18.0),
+                                    Text(
+                                      snapshot.data[index]
+                                          .data()['price']
+                                          .toString(),
+                                      style: TextStyle(
+                                          fontSize: 24.0,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: 155.0,
+                            child: Image.network(
+                                snapshot.data[index].data()['image']),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              },
+            );
+          }
+        },
+      ),
     );
   }
 }

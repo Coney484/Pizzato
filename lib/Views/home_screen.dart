@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pizzato/Helpers/footer.dart';
 import 'package:pizzato/Helpers/headers.dart';
 import 'package:pizzato/Helpers/middles.dart';
 
@@ -11,6 +12,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton:Footers().floatingActionButton(context),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(
@@ -24,7 +26,9 @@ class _HomeScreenState extends State<HomeScreen> {
               Headers().headerMenu(context),
               Divider(),
               MiddleHelpers().textFav(),
-              MiddleHelpers().dataFav(context, 'favourite')
+              MiddleHelpers().dataFav(context, 'favourite'),
+               MiddleHelpers().textBusiness(),
+              MiddleHelpers().dataBusiness(context, 'business'),
             ],
           ),
         ),
