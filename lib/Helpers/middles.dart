@@ -80,18 +80,18 @@ class MiddleHelpers extends ChangeNotifier {
                           child: Padding(
                             padding: const EdgeInsets.only(left: 10.0),
                             child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Stack(
                                   children: [
                                     SizedBox(
-                                      height: 180.0,
+                                      height: 168.0,
                                       child: Image.network(
                                           snapshot.data[index].data()['image']),
                                     ),
                                     Positioned(
-                                      left: 140.0,
+                                      left: 118.0,
                                       child: IconButton(
                                         icon: Icon(
                                           EvaIcons.heart,
@@ -108,7 +108,7 @@ class MiddleHelpers extends ChangeNotifier {
                                     snapshot.data[index].data()['name'],
                                     style: TextStyle(
                                         fontSize: 18.0,
-                                        fontWeight: FontWeight.w200,
+                                        fontWeight: FontWeight.bold,
                                         color: Colors.black),
                                   ),
                                 ),
@@ -137,8 +137,8 @@ class MiddleHelpers extends ChangeNotifier {
                                                 .data()['ratings'],
                                             style: TextStyle(
                                               fontSize: 16.0,
-                                              fontWeight: FontWeight.w700,
-                                              color: Colors.grey,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.black,
                                             ),
                                           ),
                                         ],
