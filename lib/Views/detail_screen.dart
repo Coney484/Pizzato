@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:pizzato/Views/home_screen.dart';
+import 'package:pizzato/Views/mycart.dart';
 
 class DetailsScreen extends StatefulWidget {
   final QueryDocumentSnapshot queryDocumentSnapshot;
@@ -334,7 +335,12 @@ class _DetailsScreenState extends State<DetailsScreen> {
         Stack(
           children: [
             FloatingActionButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushReplacement(
+                    context,
+                    PageTransition(
+                        child: MyCart(), type: PageTransitionType.bottomToTop));
+              },
               child: Icon(Icons.shopping_basket, color: Colors.black),
             ),
             Positioned(
