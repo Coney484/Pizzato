@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:pizzato/Services/maps.dart';
 
 class Headers extends ChangeNotifier {
   Widget appBar(BuildContext context) {
@@ -16,12 +17,17 @@ class Headers extends ChangeNotifier {
                 FontAwesomeIcons.locationArrow,
                 color: Colors.grey.shade600,
               ),
-              Text(
-                'New Police Area',
-                style: TextStyle(
-                    color: Colors.grey.shade600,
-                    fontSize: 12.0,
-                    fontWeight: FontWeight.w300),
+              Container(
+                constraints: BoxConstraints(
+                  maxWidth: 250.0
+                ),
+                child: Text(
+                  finalAddress,
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 12.0,
+                      fontWeight: FontWeight.w900),
+                ),
               ),
             ],
           ),
@@ -79,8 +85,8 @@ class Headers extends ChangeNotifier {
               child: Center(
                 child: Text(
                   'All Food',
-                  style:
-                      TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      color: Colors.black, fontWeight: FontWeight.bold),
                 ),
               ),
             ),
@@ -100,8 +106,8 @@ class Headers extends ChangeNotifier {
               child: Center(
                 child: Text(
                   'Pizza',
-                  style:
-                      TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      color: Colors.black, fontWeight: FontWeight.bold),
                 ),
               ),
             ),
@@ -121,8 +127,8 @@ class Headers extends ChangeNotifier {
               child: Center(
                 child: Text(
                   'Pasta',
-                  style:
-                      TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      color: Colors.black, fontWeight: FontWeight.bold),
                 ),
               ),
             ),
@@ -131,5 +137,4 @@ class Headers extends ChangeNotifier {
       ),
     );
   }
-  
 }

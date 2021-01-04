@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:pizzato/Helpers/footer.dart';
 import 'package:pizzato/Helpers/headers.dart';
 import 'package:pizzato/Helpers/middles.dart';
+import 'package:pizzato/Services/maps.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -10,9 +12,15 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   @override
+  void initState() {
+    Provider.of<GenerateMaps>(context, listen: false).getCurrentLocation();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton:Footers().floatingActionButton(context),
+      floatingActionButton: Footers().floatingActionButton(context),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(
@@ -27,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Divider(),
               MiddleHelpers().textFav(),
               MiddleHelpers().dataFav(context, 'favourite'),
-               MiddleHelpers().textBusiness(),
+              MiddleHelpers().textBusiness(),
               MiddleHelpers().dataBusiness(context, 'business'),
             ],
           ),
